@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nathan X Store | Painting & Fine Art Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: {
+                            DEFAULT: '#4A0E17',
+                            dark: '#32080E',
+                            light: '#6E1926'
+                        },
+                        vividPink: {
+                            DEFAULT: '#FF2E93',
+                            hover: '#E01B7A',
+                            light: '#FFE6F3'
+                        },
+                        skyBlue: {
+                            DEFAULT: '#38BDF8',
+                            light: '#E0F2FE',
+                            dark: '#0284C7'
+                        },
+                        canvasBeige: '#FDFBF7'
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        jakarta: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar & typography adjustments */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FDFBF7;
+            color: #2D0C13;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4A0E17;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF2E93;
+        }
+
+        .poppy-card-shadow {
+            box-shadow: 6px 6px 0px #4A0E17;
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .poppy-card-shadow:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px #FF2E93;
+        }
+
+        .poppy-button {
+            box-shadow: 4px 4px 0px #32080E;
+            transition: all 0.2s ease;
+        }
+
+        .poppy-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #38BDF8;
+        }
+
+        .poppy-button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #32080E;
+        }
+
+        .paint-splash-bg {
+            background-image: radial-gradient(#FF2E93 0.75px, transparent 0.75px), radial-gradient(#38BDF8 0.75px, #FDFBF7 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-art-gradient {
+            background: linear-gradient(135deg, #FF2E93 0%, #4A0E17 50%, #38BDF8 100%);
+        }
+
+        /* Custom Toast notification animation */
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-animate {
+            animation: slideInUp 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-canvasBeige antialiased selection:bg-vividPink selection:text-white">
+
+    <!-- Announcement Bar -->
+    <div class="bg-maroon text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center tracking-wider uppercase border-b-2 border-vividPink flex justify-between items-center px-6">
+        <div class="hidden md:block text-skyBlue">🎨 NATHAN ONCHE ARTWORK COLLECTION 2026</div>
+        <div class="w-full md:w-auto text-center">
+            <span>🎉 FREE WORLDWIDE SHIPPING ON ORIGINAL PAINTINGS & ORDERS OVER $200!</span>
+        </div>
+        <div class="hidden md:block text-vividPink font-bold">LIMITED EDITIONS AVAILABLE</div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 glass-panel border-b-2 border-maroon transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 bg-vividPink rounded-xl border-2 border-maroon flex items-center justify-center text-white font-syne font-extrabold text-2xl rotate-[-3deg] group-hover:rotate-6 transition-transform shadow-[3px_3px_0px_#4A0E17]">
+                    N
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-syne font-extrabold text-2xl tracking-tight text-maroon leading-none">
+                        NATHAN <span class="text-vividPink">X</span> STORE
+                    </span>
+                    <span class="text-[10px] font-bold tracking-widest uppercase text-skyBlue-dark mt-1">By Nathan Onche</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-8 font-bold text-sm tracking-wide text-maroon">
+                <a href="#hero" class="hover:text-vividPink transition-colors">HOME</a>
+                <a href="#catalog" class="hover:text-vividPink transition-colors">COLLECTION</a>
+                <a href="#room-visualizer" class="hover:text-vividPink transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-vividPink animate-ping"></span>
+                    ROOM PREVIEW
+                </a>
+                <a href="#about" class="hover:text-vividPink transition-colors">ABOUT ARTIST</a>
+                <a href="#contact" class="hover:text-vividPink transition-colors">CONTACT</a>
+            </nav>
+
+            <!-- Action Buttons (Search & Cart) -->
+            <div class="flex items-center gap-4">
+                <button id="searchToggleBtn" aria-label="Search" class="w-10 h-10 rounded-xl border-2 border-maroon flex items-center justify-center text-maroon hover:bg-skyBlue-light transition-colors">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+                <button id="openCartBtn" aria-label="View Shopping Cart" class="poppy-button relative px-4 py-2.5 bg-vividPink text-white font-bold rounded-xl border-2 border-maroon flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span class="hidden sm:inline">CART</span>
+                    <span id="cartBadge" class="w-6 h-6 rounded-full bg-skyBlue text-maroon font-extrabold text-xs flex items-center justify-center border border-maroon">0</span>
+                </button>
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" aria-label="Open Navigation Menu" class="lg:hidden w-10 h-10 rounded-xl border-2 border-maroon flex items-center justify-center text-maroon">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Bar Dropdown -->
+        <div id="searchBar" class="hidden border-t-2 border-maroon bg-white p-4 transition-all">
+            <div class="max-w-3xl mx-auto flex gap-3">
+                <input type="text" id="searchInput" placeholder="Search paintings, vibrant prints, modern canvas..." class="w-full px-4 py-3 rounded-xl border-2 border-maroon focus:outline-none focus:border-vividPink text-maroon font-semibold placeholder:text-gray-400">
+                <button id="clearSearchBtn" class="px-5 py-3 bg-maroon text-white font-bold rounded-xl border-2 border-maroon hover:bg-vividPink transition-colors">Clear</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu" class="fixed inset-0 bg-maroon/60 backdrop-blur-sm z-50 hidden flex justify-end">
+        <div class="w-4/5 max-w-sm bg-canvasBeige h-full p-6 flex flex-col justify-between border-l-4 border-maroon">
+            <div>
+                <div class="flex justify-between items-center mb-8">
+                    <span class="font-syne font-bold text-xl text-maroon">NAVIGATION</span>
+                    <button id="closeMobileMenuBtn" aria-label="Close Navigation Menu" class="w-10 h-10 rounded-xl border-2 border-maroon flex items-center justify-center text-maroon">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col gap-4 font-bold text-lg text-maroon">
+                    <a href="#hero" class="mobile-nav-link py-2 border-b border-maroon/20 hover:text-vividPink">HOME</a>
+                    <a href="#catalog" class="mobile-nav-link py-2 border-b border-maroon/20 hover:text-vividPink">ARTWORK COLLECTION</a>
+                    <a href="#room-visualizer" class="mobile-nav-link py-2 border-b border-maroon/20 hover:text-vividPink text-vividPink">ROOM PREVIEW MOCKUP</a>
+                    <a href="#about" class="mobile-nav-link py-2 border-b border-maroon/20 hover:text-vividPink">ABOUT NATHAN ONCHE</a>
+                    <a href="#contact" class="mobile-nav-link py-2 hover:text-vividPink">CONTACT & STUDIO</a>
+                </div>
+            </div>
+            <div class="bg-vividPink/10 p-4 rounded-2xl border-2 border-maroon text-center">
+                <p class="font-bold text-maroon text-sm">Need Custom Commission?</p>
+                <a href="#contact" class="mobile-nav-link inline-block mt-2 px-4 py-2 bg-vividPink text-white font-bold rounded-xl text-xs uppercase border border-maroon">Get In Touch</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-8 pb-16 lg:pt-16 lg:pb-24 overflow-hidden border-b-2 border-maroon">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Content -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-skyBlue-light border-2 border-maroon text-maroon font-bold text-xs uppercase tracking-wider shadow-[3px_3px_0px_#4A0E17]">
+                        <i class="fa-solid fa-palette text-vividPink"></i> Bold & Poppy Fine Art 2026
+                    </div>
+                    
+                    <h1 class="font-syne font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-none text-maroon uppercase tracking-tight">
+                        EXPLODE YOUR <span class="text-vividPink underline decoration-skyBlue decoration-wavy decoration-2">WALLS</span> WITH COLOR.
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-maroon/80 font-medium max-w-2xl leading-relaxed">
+                        Discover expressive contemporary paintings, vivid acrylics, and bold limited edition prints created by Nigerian visual artist <span class="font-bold text-maroon underline">Nathan Onche</span>.
+                    </p>
+
+                    <div class="pt-4 flex flex-wrap gap-4 items-center">
+                        <a href="#catalog" class="poppy-button px-8 py-4 bg-vividPink text-white font-syne font-extrabold rounded-2xl border-2 border-maroon flex items-center gap-3 text-lg">
+                            <span>SHOP COLLECTION</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#room-visualizer" class="poppy-button px-8 py-4 bg-skyBlue text-maroon font-syne font-extrabold rounded-2xl border-2 border-maroon flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>WALL PREVIEW</span>
+                        </a>
+                    </div>
+
+                    <!-- Highlights Badge Grid -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t-2 border-maroon/20 max-w-lg">
+                        <div>
+                            <p class="font-syne font-extrabold text-2xl text-maroon">150+</p>
+                            <p class="text-xs font-bold text-maroon/70 uppercase">Original Works</p>
+                        </div>
+                        <div>
+                            <p class="font-syne font-extrabold text-2xl text-vividPink">100%</p>
+                            <p class="text-xs font-bold text-maroon/70 uppercase">Handcrafted</p>
+                        </div>
+                        <div>
+                            <p class="font-syne font-extrabold text-2xl text-skyBlue-dark">4.9 ★</p>
+                            <p class="text-xs font-bold text-maroon/70 uppercase">Collector Rating</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Hero Interactive Canvas Frame -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Decorative Frame Background Elements -->
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-skyBlue rounded-3xl border-2 border-maroon -rotate-12 z-0"></div>
+                        <div class="absolute -bottom-6 -right-6 w-28 h-28 bg-vividPink rounded-3xl border-2 border-maroon rotate-12 z-0"></div>
+
+                        <!-- Main Artwork Showcase Card -->
+                        <div class="relative z-10 bg-white rounded-3xl p-5 border-4 border-maroon poppy-card-shadow">
+                            <div class="relative overflow-hidden rounded-2xl border-2 border-maroon aspect-[4/5] bg-maroon group">
+                                <!-- Canvas Drawing or Generated Artwork -->
+                                <canvas id="heroCanvas" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer"></canvas>
+                                
+                                <div class="absolute top-4 left-4 bg-vividPink text-white text-xs font-syne font-extrabold px-3 py-1.5 rounded-full border-2 border-maroon uppercase tracking-wider shadow-[2px_2px_0px_#32080E]">
+                                    ★ Featured Canvas
+                                </div>
+
+                                <div class="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-maroon via-maroon/80 to-transparent text-white">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-skyBlue">Acrylic & Spray Paint</span>
+                                    <h3 class="font-syne font-bold text-2xl">Chromatic Pulse No. 09</h3>
+                                    <div class="flex justify-between items-end mt-2">
+                                        <span class="font-syne font-extrabold text-xl text-vividPink-light">$780.00</span>
+                                        <button onclick="quickViewProduct('p1')" class="px-3 py-1.5 bg-white text-maroon font-bold text-xs rounded-lg border border-maroon hover:bg-vividPink hover:text-white transition-colors">
+                                            Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 flex items-center justify-between text-xs font-bold text-maroon px-2">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-certificate text-vividPink"></i> Signed Certificate Included</span>
+                                <span class="text-skyBlue-dark font-syne">1/1 Original Edition</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Filterable Product Catalog Section -->
+    <section id="catalog" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <div class="inline-block px-3 py-1 bg-vividPink-light border border-maroon text-vividPink font-bold text-xs rounded-md uppercase tracking-wider mb-2">
+                    Studio Catalog
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-5xl text-maroon uppercase">
+                    ARTWORK COLLECTION
+                </h2>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap gap-2" id="filterBtnGroup">
+                <button data-filter="all" class="filter-btn active-filter px-5 py-2.5 rounded-xl border-2 border-maroon font-bold text-sm bg-maroon text-white transition-all">
+                    All Works
+                </button>
+                <button data-filter="paintings" class="filter-btn px-5 py-2.5 rounded-xl border-2 border-maroon font-bold text-sm bg-white text-maroon hover:bg-skyBlue-light transition-all">
+                    Original Paintings
+                </button>
+                <button data-filter="prints" class="filter-btn px-5 py-2.5 rounded-xl border-2 border-maroon font-bold text-sm bg-white text-maroon hover:bg-skyBlue-light transition-all">
+                    Limited Prints
+                </button>
+                <button data-filter="digital" class="filter-btn px-5 py-2.5 rounded-xl border-2 border-maroon font-bold text-sm bg-white text-maroon hover:bg-skyBlue-light transition-all">
+                    Sculptures & Merch
+                </button>
+            </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamically populated via Javascript -->
+        </div>
+    </section>
+
+    <!-- Interactive Wall Visualizer Section -->
+    <section id="room-visualizer" class="py-16 bg-maroon text-white border-y-4 border-vividPink relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-vividPink text-white font-bold text-xs uppercase tracking-widest border border-white mb-3">
+                    <i class="fa-solid fa-cube"></i> Virtual Preview
+                </span>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-5xl text-white uppercase">
+                    SEE IT ON YOUR WALL
+                </h2>
+                <p class="text-canvasBeige/80 text-base sm:text-lg mt-3">
+                    Test how Nathan Onche's bold paintings look in modern living space settings with custom wall colors.
+                </p>
+            </div>
+
+            <!-- Visualizer Container -->
+            <div class="bg-canvasBeige text-maroon rounded-3xl border-4 border-white p-6 lg:p-8 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Controls Column -->
+                    <div class="lg:col-span-4 space-y-6">
+                        <h3 class="font-syne font-extrabold text-xl text-maroon border-b-2 border-maroon/20 pb-3">
+                            MOCKUP CONTROLS
+                        </h3>
+
+                        <!-- Select Painting Dropdown -->
+                        <div>
+                            <label class="block font-bold text-sm text-maroon mb-2">Select Artwork:</label>
+                            <select id="roomArtSelect" class="w-full p-3 rounded-xl border-2 border-maroon font-bold bg-white text-maroon focus:outline-none focus:border-vividPink">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+
+                        <!-- Wall Color Picker Options -->
+                        <div>
+                            <label class="block font-bold text-sm text-maroon mb-2">Change Wall Color:</label>
+                            <div class="flex gap-3">
+                                <button onclick="setWallColor('#FDFBF7')" class="w-10 h-10 rounded-full border-2 border-maroon bg-[#FDFBF7] shadow-inner focus:ring-2 focus:ring-vividPink" title="Canvas Off-White"></button>
+                                <button onclick="setWallColor('#1E293B')" class="w-10 h-10 rounded-full border-2 border-maroon bg-[#1E293B] shadow-inner focus:ring-2 focus:ring-vividPink" title="Midnight Slate"></button>
+                                <button onclick="setWallColor('#4A0E17')" class="w-10 h-10 rounded-full border-2 border-maroon bg-[#4A0E17] shadow-inner focus:ring-2 focus:ring-vividPink" title="Deep Maroon"></button>
+                                <button onclick="setWallColor('#38BDF8')" class="w-10 h-10 rounded-full border-2 border-maroon bg-[#38BDF8] shadow-inner focus:ring-2 focus:ring-vividPink" title="Sky Blue"></button>
+                                <button onclick="setWallColor('#E2E8F0')" class="w-10 h-10 rounded-full border-2 border-maroon bg-[#E2E8F0] shadow-inner focus:ring-2 focus:ring-vividPink" title="Soft Neutral Grey"></button>
+                            </div>
+                        </div>
+
+                        <!-- Artwork Size Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="font-bold text-sm text-maroon">Canvas Scale:</label>
+                                <span id="artScaleValue" class="text-xs font-bold text-vividPink">100%</span>
+                            </div>
+                            <input type="range" id="artScaleSlider" min="50" max="150" value="100" class="w-full accent-vividPink">
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-skyBlue-light border-2 border-maroon text-xs text-maroon font-semibold space-y-1">
+                            <p><i class="fa-solid fa-circle-info text-skyBlue-dark"></i> Scale artwork to visualize proportions above sofas or desks.</p>
+                        </div>
+
+                        <button id="addVisualizerToCartBtn" class="w-full poppy-button py-3 bg-vividPink text-white font-syne font-extrabold rounded-xl border-2 border-maroon text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> ADD THIS ARTWORK TO CART
+                        </button>
+                    </div>
+
+                    <!-- Room Scene Stage -->
+                    <div class="lg:col-span-8">
+                        <div id="roomStage" class="relative rounded-2xl border-4 border-maroon h-[380px] sm:h-[480px] transition-colors duration-500 overflow-hidden flex flex-col justify-end items-center p-6 bg-[#FDFBF7]">
+                            
+                            <!-- Wall Artwork Hang Frame -->
+                            <div id="roomArtworkHolder" class="absolute top-[18%] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-8 border-white rounded-sm bg-white p-1">
+                                <canvas id="roomCanvas" class="w-44 h-56 sm:w-52 sm:h-64 object-cover"></canvas>
+                            </div>
+
+                            <!-- Interior Furniture Overlay Graphic -->
+                            <div class="relative z-10 w-full max-w-lg mx-auto pointer-events-none">
+                                <!-- Modern Couch Mockup Canvas Element -->
+                                <div class="w-full h-32 sm:h-40 bg-maroon rounded-t-3xl border-t-4 border-x-4 border-maroon-dark relative flex items-center justify-center shadow-2xl">
+                                    <div class="w-full h-12 bg-maroon-light absolute top-2 rounded-t-xl border-b-2 border-maroon/40"></div>
+                                    <!-- Couch Cushions -->
+                                    <div class="grid grid-cols-3 gap-2 w-full px-4 h-20 mt-6">
+                                        <div class="bg-maroon-dark rounded-xl border border-white/10"></div>
+                                        <div class="bg-maroon-dark rounded-xl border border-white/10"></div>
+                                        <div class="bg-maroon-dark rounded-xl border border-white/10"></div>
+                                    </div>
+                                    <!-- Accent Pillows -->
+                                    <div class="absolute -top-3 left-8 w-10 h-10 bg-vividPink rounded-lg rotate-12 border-2 border-maroon"></div>
+                                    <div class="absolute -top-3 right-8 w-10 h-10 bg-skyBlue rounded-lg -rotate-12 border-2 border-maroon"></div>
+                                </div>
+                                <div class="w-full h-4 bg-maroon-dark border-t-2 border-maroon"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artist Bio / About Nathan Onche -->
+    <section id="about" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Artist Portrait & Interactive Splash Canvas -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative bg-vividPink p-4 rounded-3xl border-4 border-maroon poppy-card-shadow">
+                    <div class="relative aspect-square rounded-2xl overflow-hidden border-2 border-maroon bg-canvasBeige">
+                        <!-- Interactive Splash Canvas -->
+                        <canvas id="interactiveArtistCanvas" class="w-full h-full cursor-crosshair"></canvas>
+                        
+                        <div class="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-md p-3 rounded-xl border-2 border-maroon text-center">
+                            <span class="text-xs font-bold text-maroon"><i class="fa-solid fa-paintbrush text-vividPink"></i> Click/Drag on image to spray paint!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bio Description -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-block px-3 py-1 bg-skyBlue-light border border-maroon text-skyBlue-dark font-bold text-xs rounded-md uppercase tracking-wider">
+                    Meet The Artist
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-5xl text-maroon uppercase leading-tight">
+                    NATHAN ONCHE: <span class="text-vividPink">FEARLESS</span> COLORIST
+                </h2>
+                <p class="text-maroon/80 text-base sm:text-lg leading-relaxed">
+                    Based in West Africa, Nathan Onche is a contemporary visual artist celebrated for merging pop culture, traditional African motifs, and expressive neo-impressionist acrylics.
+                </p>
+                <p class="text-maroon/80 text-base sm:text-lg leading-relaxed">
+                    His signature <span class="font-bold text-maroon">Pink & Maroon Poppy style</span> explores themes of identity, joy, resilience, and urban rhythm. Every canvas is layered with thick impasto texture, energetic mark-making, and neon light blue accents.
+                </p>
+
+                <div class="p-6 bg-vividPink-light rounded-2xl border-2 border-maroon relative">
+                    <i class="fa-solid fa-quote-left text-vividPink/30 text-5xl absolute top-2 right-4"></i>
+                    <p class="font-syne font-bold text-maroon text-lg italic relative z-10">
+                        "Art should never whisper when it can sing out loud. I create paintings that fill rooms with vibrant energy and unyielding optimism."
+                    </p>
+                    <p class="mt-2 text-xs font-bold text-vividPink uppercase tracking-widest">— Nathan Onche, Visual Artist</p>
+                </div>
+
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <div class="flex items-center gap-2 text-xs font-bold text-maroon bg-white px-4 py-2 rounded-xl border-2 border-maroon">
+                        <i class="fa-solid fa-check text-vividPink"></i> Museum Quality Canvas
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-maroon bg-white px-4 py-2 rounded-xl border-2 border-maroon">
+                        <i class="fa-solid fa-check text-vividPink"></i> COA Authenticity Verified
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-bold text-maroon bg-white px-4 py-2 rounded-xl border-2 border-maroon">
+                        <i class="fa-solid fa-check text-vividPink"></i> Eco Acrylic Pigments
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div id="quickViewModal" class="fixed inset-0 bg-maroon/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-canvasBeige rounded-3xl border-4 border-maroon max-w-3xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto poppy-card-shadow">
+            <button id="closeQuickViewBtn" aria-label="Close Quick View Modal" class="absolute top-4 right-4 w-10 h-10 bg-vividPink text-white rounded-xl border-2 border-maroon flex items-center justify-center hover:bg-maroon transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div id="quickViewContent" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <!-- Dynamically loaded content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Drawer Overlay -->
+    <div id="cartDrawerOverlay" class="fixed inset-0 bg-maroon/60 backdrop-blur-sm z-50 hidden transition-opacity">
+        <div id="cartDrawer" class="fixed right-0 top-0 bottom-0 w-full max-w-md bg-canvasBeige border-l-4 border-maroon p-6 flex flex-col justify-between shadow-2xl transition-transform transform translate-x-full">
+            
+            <!-- Cart Header -->
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b-2 border-maroon">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-2xl text-vividPink"></i>
+                        <h3 class="font-syne font-extrabold text-2xl text-maroon">YOUR BAG</h3>
+                    </div>
+                    <button id="closeCartBtn" aria-label="Close Shopping Cart" class="w-10 h-10 rounded-xl border-2 border-maroon flex items-center justify-center text-maroon hover:bg-vividPink hover:text-white transition-colors">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Free Shipping Indicator -->
+                <div class="my-4 p-3 bg-skyBlue-light rounded-xl border-2 border-maroon">
+                    <div class="flex justify-between text-xs font-bold text-maroon mb-1">
+                        <span id="shippingProgressText">Free Shipping Progress</span>
+                        <span id="shippingAmountLeft" class="text-vividPink">$200.00 left</span>
+                    </div>
+                    <div class="w-full h-3 bg-white rounded-full border border-maroon overflow-hidden">
+                        <div id="shippingProgressBar" class="h-full bg-vividPink transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Cart Items List Container -->
+                <div id="cartItemsList" class="space-y-4 max-h-[50vh] overflow-y-auto pr-1">
+                    <!-- Cart Items generated dynamically -->
+                </div>
+            </div>
+
+            <!-- Cart Footer & Total Calculation -->
+            <div class="pt-4 border-t-2 border-maroon bg-canvasBeige">
+                <div class="space-y-2 font-bold text-sm text-maroon mb-4">
+                    <div class="flex justify-between">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Estimated Shipping:</span>
+                        <span id="cartShipping">Calculated at checkout</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-syne font-extrabold text-vividPink pt-2 border-t border-maroon/20">
+                        <span>Total:</span>
+                        <span id="cartTotal">$0.00</span>
+                    </div>
+                </div>
+
+                <button id="checkoutBtn" class="w-full poppy-button py-4 bg-vividPink text-white font-syne font-extrabold rounded-2xl border-2 border-maroon text-lg flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>PROCEED TO CHECKOUT</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-maroon text-white border-t-4 border-vividPink pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b-2 border-maroon-light">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-4">
+                    <a href="#" class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-vividPink rounded-lg border border-white flex items-center justify-center text-white font-syne font-bold text-xl">
+                            N
+                        </div>
+                        <span class="font-syne font-extrabold text-xl text-white">NATHAN X STORE</span>
+                    </a>
+                    <p class="text-xs text-canvasBeige/80 leading-relaxed">
+                        Original artworks, bold acrylic canvas paintings, and collectable limited edition fine art prints by visual artist Nathan Onche.
+                    </p>
+                    <div class="flex gap-3 text-lg">
+                        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg border border-white/30 flex items-center justify-center hover:bg-vividPink transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter / X" class="w-9 h-9 rounded-lg border border-white/30 flex items-center justify-center hover:bg-vividPink transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest" class="w-9 h-9 rounded-lg border border-white/30 flex items-center justify-center hover:bg-vividPink transition-colors"><i class="fa-brands fa-pinterest"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div>
+                    <h4 class="font-syne font-bold text-skyBlue text-sm tracking-wider uppercase mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs font-semibold text-canvasBeige/80">
+                        <li><a href="#hero" class="hover:text-vividPink">Home Showcase</a></li>
+                        <li><a href="#catalog" class="hover:text-vividPink">Original Canvas Paintings</a></li>
+                        <li><a href="#catalog" class="hover:text-vividPink">Limited Edition Prints</a></li>
+                        <li><a href="#room-visualizer" class="hover:text-vividPink">Virtual Room Preview</a></li>
+                        <li><a href="#about" class="hover:text-vividPink">About Nathan Onche</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Studio Location & Info -->
+                <div>
+                    <h4 class="font-syne font-bold text-skyBlue text-sm tracking-wider uppercase mb-4">Studio Hours</h4>
+                    <p class="text-xs text-canvasBeige/80 leading-relaxed mb-2">
+                        <strong>Nathan Onche Fine Art Studio</strong><br>
+                        Lagos & Jos, Nigeria
+                    </p>
+                    <p class="text-xs text-canvasBeige/80">Mon - Fri: 9:00 AM - 6:00 PM GMT</p>
+                    <p class="text-xs text-vividPink font-bold mt-2">Commissions: Open for 2026</p>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div>
+                    <h4 class="font-syne font-bold text-skyBlue text-sm tracking-wider uppercase mb-4">Join Collectors Club</h4>
+                    <p class="text-xs text-canvasBeige/80 mb-3">Subscribe for exclusive early drop access, private viewings, and studio stories.</p>
+                    <form id="newsletterForm" class="space-y-2">
+                        <input type="email" id="newsletterEmail" required placeholder="Enter your email..." class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold text-maroon bg-white border border-maroon focus:outline-none focus:ring-2 focus:ring-vividPink">
+                        <button type="submit" class="w-full py-2.5 bg-vividPink text-white font-syne font-bold text-xs uppercase tracking-wider rounded-xl border border-white hover:bg-vividPink-hover transition-colors">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-canvasBeige/60 gap-4">
+                <p>© 2026 Nathan X Store / Nathan Onche Artworks. All Rights Reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Service</a>
+                    <a href="#" class="hover:underline">Authenticity Guarantee</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <script>
+        /* ==========================================================================
+           1. DATA STORE (ARTWORK PRODUCTS)
+           ========================================================================== */
+        const productsData = [
+            {
+                id: 'p1',
+                title: 'Chromatic Pulse No. 09',
+                category: 'paintings',
+                price: 780.00,
+                rating: 5.0,
+                reviewsCount: 14,
+                dimensions: '36" x 48" Canvas',
+                medium: 'Acrylic & Spray Paint',
+                description: 'Bold expressive abstract canvas exploring rhythm, urban color theory, and African pop motifs.',
+                badge: 'Original',
+                colors: ['#FF2E93', '#4A0E17', '#38BDF8', '#FDFBF7']
+            },
+            {
+                id: 'p2',
+                title: 'Echoes of Jos Highlands',
+                category: 'paintings',
+                price: 920.00,
+                rating: 4.9,
+                reviewsCount: 19,
+                dimensions: '40" x 50" Stretched Canvas',
+                medium: 'Mixed Media & Oil Pastel',
+                description: 'Inspired by native plateau landscapes featuring thick impasto strokes and neon light blue highlights.',
+                badge: 'Original',
+                colors: ['#38BDF8', '#4A0E17', '#FF2E93', '#10B981']
+            },
+            {
+                id: 'p3',
+                title: 'Neon Sovereignty Print',
+                category: 'prints',
+                price: 140.00,
+                rating: 4.8,
+                reviewsCount: 32,
+                dimensions: '18" x 24" Archival Paper',
+                medium: 'Giclée Fine Art Print',
+                description: 'Limited edition of 50 hand-signed and numbered prints on heavy cotton archival rag paper.',
+                badge: 'Limited Print',
+                colors: ['#FF2E93', '#4A0E17', '#38BDF8']
+            },
+            {
+                id: 'p4',
+                title: 'Vibrant Solitude Study',
+                category: 'paintings',
+                price: 650.00,
+                rating: 5.0,
+                reviewsCount: 8,
+                dimensions: '24" x 36" Board Frame',
+                medium: 'Acrylic & Gold Leaf Accent',
+                description: 'Intimate figurative portrait rendered in Nathan Onche signature maroon silhouette and vivid pink accents.',
+                badge: 'Original',
+                colors: ['#4A0E17', '#FF2E93', '#F59E0B']
+            },
+            {
+                id: 'p5',
+                title: 'Urban Rhythm Figurine',
+                category: 'digital',
+                price: 210.00,
+                rating: 4.9,
+                reviewsCount: 23,
+                dimensions: '10" Hand Painted Resin',
+                medium: 'Collectible Art Sculpture',
+                description: 'Limited run resin sculpture hand-painted with Nathan Onche signature color splashes.',
+                badge: 'Sculpture',
+                colors: ['#FF2E93', '#38BDF8', '#4A0E17']
+            },
+            {
+                id: 'p6',
+                title: 'Radiant Identity Silk Print',
+                category: 'prints',
+                price: 125.00,
+                rating: 4.7,
+                reviewsCount: 11,
+                dimensions: '20" x 20" Screenprint',
+                medium: 'Screenprint on Fine Rag',
+                description: 'Vibrant pop-art portrait screenprint with textured pink gloss overlays.',
+                badge: 'Print',
+                colors: ['#FF2E93', '#FDFBF7', '#38BDF8']
+            }
+        ];
+
+        // State Management
+        let cart = [];
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        /* ==========================================================================
+           2. PROCEDURAL CANVAS GENERATORS (Artworks)
+           ========================================================================== */
+        // Function to paint procedural artwork onto any HTML5 canvas element
+        function drawArtworkCanvas(canvasId, colors, patternType = 1) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            // Set internal resolution
+            canvas.width = 400;
+            canvas.height = 500;
+
+            const w = canvas.width;
+            const h = canvas.height;
+
+            // Background
+            ctx.fillStyle = colors[1] || '#4A0E17';
+            ctx.fillRect(0, 0, w, h);
+
+            // Layer 1: Abstract Dynamic Strokes
+            for (let i = 0; i < 12; i++) {
+                ctx.fillStyle = colors[i % colors.length];
+                ctx.beginPath();
+                ctx.arc(
+                    (Math.sin(i * 1.5) + 1) * (w / 2),
+                    (Math.cos(i * 2.1) + 1) * (h / 2),
+                    40 + (i * 12),
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fill();
+            }
+
+            // Layer 2: Geometric & Expressionist Splatters
+            ctx.strokeStyle = colors[0] || '#FF2E93';
+            ctx.lineWidth = 12;
+            ctx.beginPath();
+            ctx.moveTo(30, h - 50);
+            ctx.bezierCurveTo(w * 0.3, h * 0.1, w * 0.7, h * 0.9, w - 30, 60);
+            ctx.stroke();
+
+            // Accent light blue shapes
+            ctx.fillStyle = colors[2] || '#38BDF8';
+            ctx.beginPath();
+            ctx.polygon = ctx.arc(w * 0.65, h * 0.35, 55, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Paint Splatter effect
+            ctx.fillStyle = '#FDFBF7';
+            for (let j = 0; j < 35; j++) {
+                const rx = Math.random() * w;
+                const ry = Math.random() * h;
+                const rsize = Math.random() * 6 + 2;
+                ctx.beginPath();
+                ctx.arc(rx, ry, rsize, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Signature Mark
+            ctx.fillStyle = '#FF2E93';
+            ctx.font = 'bold 16px Syne';
+            ctx.fillText('N. Onche', w - 100, h - 25);
+        }
+
+        /* ==========================================================================
+           3. RENDER PRODUCT CATALOG & CARDS
+           ========================================================================== */
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            if (!grid) return;
+
+            const filtered = productsData.filter(p => {
+                const matchesCategory = (currentFilter === 'all') || (p.category === currentFilter);
+                const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      p.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center bg-white rounded-3xl border-2 border-maroon">
+                        <i class="fa-solid fa-palette text-4xl text-vividPink mb-3"></i>
+                        <h3 class="font-syne font-bold text-xl text-maroon">No Artworks Found</h3>
+                        <p class="text-sm text-maroon/70">Try adjusting your category filter or search terms.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(product => `
+                <div class="bg-white rounded-3xl border-3 border-maroon p-5 poppy-card-shadow flex flex-col justify-between group">
+                    <div>
+                        <!-- Canvas Card Banner -->
+                        <div class="relative rounded-2xl overflow-hidden border-2 border-maroon bg-maroon aspect-[4/5] mb-4">
+                            <canvas id="cardCanvas_${product.id}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="quickViewProduct('${product.id}')"></canvas>
+                            
+                            <span class="absolute top-3 left-3 bg-vividPink text-white text-[11px] font-syne font-extrabold px-3 py-1 rounded-full border border-maroon uppercase shadow-[2px_2px_0px_#4A0E17]">
+                                ${product.badge}
+                            </span>
+
+                            <button onclick="quickViewProduct('${product.id}')" aria-label="Quick view product" class="absolute bottom-3 right-3 w-10 h-10 bg-white text-maroon rounded-xl border-2 border-maroon flex items-center justify-center hover:bg-skyBlue transition-colors shadow-[2px_2px_0px_#4A0E17]">
+                                <i class="fa-solid fa-expand"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card Info -->
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="font-syne font-extrabold text-xl text-maroon leading-snug cursor-pointer hover:text-vividPink transition-colors" onclick="quickViewProduct('${product.id}')">
+                                ${product.title}
+                            </h3>
+                        </div>
+
+                        <p class="text-xs font-semibold text-maroon/70 mb-2">${product.medium} • ${product.dimensions}</p>
+
+                        <div class="flex items-center gap-1 text-xs font-bold text-amber-500 mb-4">
+                            <span>★ ${product.rating.toFixed(1)}</span>
+                            <span class="text-maroon/50">(${product.reviewsCount} reviews)</span>
+                        </div>
+                    </div>
+
+                    <!-- Price & Add to Cart -->
+                    <div class="pt-4 border-t-2 border-maroon/10 flex items-center justify-between mt-auto">
+                        <div>
+                            <span class="text-[10px] font-bold text-maroon/60 block uppercase">Price</span>
+                            <span class="font-syne font-extrabold text-xl text-maroon">$${product.price.toFixed(2)}</span>
+                        </div>
+                        <button onclick="addToCart('${product.id}')" class="poppy-button px-4 py-2.5 bg-vividPink text-white font-syne font-extrabold rounded-xl border-2 border-maroon text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>ADD</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Draw Canvas graphics for all product cards
+            filtered.forEach(p => {
+                drawArtworkCanvas(`cardCanvas_${p.id}`, p.colors);
+            });
+        }
+
+        /* ==========================================================================
+           4. SHOPPING CART SYSTEM & DRAWER
+           ========================================================================== */
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`Added "${product.title}" to your cart!`);
+            openCartDrawer();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        function changeQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            // Update Cart Badge Count
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) cartBadge.innerText = totalCount;
+
+            // Cart Items List
+            const list = document.getElementById('cartItemsList');
+            if (!list) return;
+
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <div class="py-12 text-center text-maroon/70">
+                        <i class="fa-solid fa-bag-shopping text-4xl text-vividPink/40 mb-2"></i>
+                        <p class="font-bold">Your cart is empty.</p>
+                        <a href="#catalog" onclick="closeCartDrawer()" class="inline-block mt-3 px-4 py-2 bg-skyBlue text-maroon font-bold text-xs rounded-xl border border-maroon">Browse Artworks</a>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = cart.map(item => `
+                    <div class="flex gap-4 p-3 bg-white rounded-2xl border-2 border-maroon items-center">
+                        <div class="w-16 h-20 rounded-lg bg-maroon border border-maroon overflow-hidden flex-shrink-0">
+                            <canvas id="cartCanvas_${item.id}" class="w-full h-full object-cover"></canvas>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-syne font-bold text-sm text-maroon truncate">${item.title}</h4>
+                            <p class="text-xs font-semibold text-vividPink">$${item.price.toFixed(2)}</p>
+                            
+                            <!-- Quantity Controls -->
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="changeQuantity('${item.id}', -1)" class="w-6 h-6 rounded-md border border-maroon bg-canvasBeige flex items-center justify-center text-xs font-bold text-maroon hover:bg-vividPink hover:text-white">-</button>
+                                <span class="text-xs font-bold text-maroon">${item.quantity}</span>
+                                <button onclick="changeQuantity('${item.id}', 1)" class="w-6 h-6 rounded-md border border-maroon bg-canvasBeige flex items-center justify-center text-xs font-bold text-maroon hover:bg-vividPink hover:text-white">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" aria-label="Remove item" class="text-maroon/40 hover:text-vividPink transition-colors p-1">
+                            <i class="fa-solid fa-trash-can text-base"></i>
+                        </button>
+                    </div>
+                `).join('');
+
+                // Render cart thumbnails canvas
+                cart.forEach(item => {
+                    drawArtworkCanvas(`cartCanvas_${item.id}`, item.colors);
+                });
+            }
+
+            // Calculations
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const freeShippingThreshold = 200;
+            
+            document.getElementById('cartSubtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cartTotal').innerText = `$${subtotal.toFixed(2)}`;
+
+            // Shipping Progress Bar
+            const progressBar = document.getElementById('shippingProgressBar');
+            const progressText = document.getElementById('shippingAmountLeft');
+            if (subtotal >= freeShippingThreshold) {
+                progressBar.style.width = '100%';
+                progressText.innerText = 'FREE SHIPPING UNLOCKED!';
+                progressText.classList.replace('text-vividPink', 'text-emerald-600');
+            } else {
+                const diff = freeShippingThreshold - subtotal;
+                const percent = (subtotal / freeShippingThreshold) * 100;
+                progressBar.style.width = `${percent}%`;
+                progressText.innerText = `$${diff.toFixed(2)} left for FREE shipping`;
+                progressText.classList.replace('text-emerald-600', 'text-vividPink');
+            }
+        }
+
+        function openCartDrawer() {
+            const overlay = document.getElementById('cartDrawerOverlay');
+            const drawer = document.getElementById('cartDrawer');
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                drawer.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeCartDrawer() {
+            const overlay = document.getElementById('cartDrawerOverlay');
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.add('translate-x-full');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 300);
+        }
+
+        /* ==========================================================================
+           5. QUICK VIEW MODAL
+           ========================================================================== */
+        function quickViewProduct(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const modal = document.getElementById('quickViewModal');
+            const content = document.getElementById('quickViewContent');
+
+            content.innerHTML = `
+                <div class="aspect-[4/5] bg-maroon rounded-2xl border-2 border-maroon overflow-hidden">
+                    <canvas id="quickViewCanvas" class="w-full h-full object-cover"></canvas>
+                </div>
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-vividPink-light text-vividPink border border-maroon font-bold text-xs rounded-md uppercase mb-2">
+                            ${product.badge}
+                        </span>
+                        <h2 class="font-syne font-extrabold text-2xl sm:text-3xl text-maroon leading-tight mb-2">${product.title}</h2>
+                        <p class="text-xs font-bold text-skyBlue-dark mb-4">By Nathan Onche Studio</p>
+
+                        <div class="font-syne font-extrabold text-3xl text-vividPink mb-4">$${product.price.toFixed(2)}</div>
+
+                        <p class="text-sm text-maroon/80 font-medium leading-relaxed mb-6">${product.description}</p>
+
+                        <div class="space-y-2 text-xs font-bold text-maroon bg-white p-4 rounded-xl border-2 border-maroon mb-6">
+                            <p><i class="fa-solid fa-ruler-combined text-vividPink"></i> Dimensions: ${product.dimensions}</p>
+                            <p><i class="fa-solid fa-paint-roller text-vividPink"></i> Medium: ${product.medium}</p>
+                            <p><i class="fa-solid fa-truck-fast text-vividPink"></i> Insured Worldwide Express Shipping</p>
+                        </div>
+                    </div>
+
+                    <button onclick="addToCart('${product.id}'); closeQuickViewModal();" class="poppy-button w-full py-4 bg-vividPink text-white font-syne font-extrabold rounded-xl border-2 border-maroon text-base flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-plus"></i> ADD TO SHOPPING BAG
+                    </button>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            drawArtworkCanvas('quickViewCanvas', product.colors);
+        }
+
+        function closeQuickViewModal() {
+            document.getElementById('quickViewModal').classList.add('hidden');
+        }
+
+        /* ==========================================================================
+           6. INTERACTIVE ROOM PREVIEW MOCKUP VISUALIZER
+           ========================================================================== */
+        function initRoomVisualizer() {
+            const select = document.getElementById('roomArtSelect');
+            if (!select) return;
+
+            select.innerHTML = productsData.map(p => `
+                <option value="${p.id}">${p.title} (${p.dimensions})</option>
+            `).join('');
+
+            select.addEventListener('change', (e) => {
+                updateRoomArtwork(e.target.value);
+            });
+
+            // Scale Slider
+            const scaleSlider = document.getElementById('artScaleSlider');
+            const scaleValue = document.getElementById('artScaleValue');
+            const holder = document.getElementById('roomArtworkHolder');
+
+            scaleSlider.addEventListener('input', (e) => {
+                const val = e.target.value;
+                scaleValue.innerText = `${val}%`;
+                holder.style.transform = `scale(${val / 100})`;
+            });
+
+            // Initial render
+            updateRoomArtwork(productsData[0].id);
+
+            // Add visualizer selection to cart
+            document.getElementById('addVisualizerToCartBtn').addEventListener('click', () => {
+                addToCart(select.value);
+            });
+        }
+
+        function setWallColor(colorHex) {
+            const stage = document.getElementById('roomStage');
+            if (stage) {
+                stage.style.backgroundColor = colorHex;
+            }
+        }
+
+        function updateRoomArtwork(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+            drawArtworkCanvas('roomCanvas', product.colors);
+        }
+
+        /* ==========================================================================
+           7. INTERACTIVE ARTIST SPRAY PAINT CANVAS
+           ========================================================================== */
+        function initArtistPaintCanvas() {
+            const canvas = document.getElementById('interactiveArtistCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = 400;
+            canvas.height = 400;
+
+            // Base Background - Artist Portrait Silhouette Simulation
+            ctx.fillStyle = '#4A0E17';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Stylized Artist Portrait geometry
+            ctx.fillStyle = '#FF2E93';
+            ctx.beginPath();
+            ctx.arc(200, 160, 80, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#38BDF8';
+            ctx.beginPath();
+            ctx.arc(200, 340, 130, 0, Math.PI * 2);
+            ctx.fill();
+
+            let isDrawing = false;
+            const paintColors = ['#FF2E93', '#38BDF8', '#FDFBF7', '#F59E0B'];
+
+            function sprayPaint(x, y) {
+                ctx.fillStyle = paintColors[Math.floor(Math.random() * paintColors.length)];
+                for (let i = 0; i < 20; i++) {
+                    const offsetX = (Math.random() - 0.5) * 35;
+                    const offsetY = (Math.random() - 0.5) * 35;
+                    const radius = Math.random() * 4 + 1;
+                    ctx.beginPath();
+                    ctx.arc(x + offsetX, y + offsetY, radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            canvas.addEventListener('mousedown', (e) => {
+                isDrawing = true;
+                const rect = canvas.getBoundingClientRect();
+                sprayPaint(e.clientX - rect.left, e.clientY - rect.top);
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (isDrawing) {
+                    const rect = canvas.getBoundingClientRect();
+                    sprayPaint(e.clientX - rect.left, e.clientY - rect.top);
+                }
+            });
+
+            window.addEventListener('mouseup', () => isDrawing = false);
+        }
+
+        /* ==========================================================================
+           8. TOAST NOTIFICATION UTILITY
+           ========================================================================== */
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast-animate bg-maroon text-white font-bold text-sm px-5 py-3.5 rounded-2xl border-2 border-vividPink shadow-2xl flex items-center gap-3 pointer-events-auto';
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-check text-vividPink text-lg"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        /* ==========================================================================
+           9. EVENT LISTENERS & INITIALIZATION
+           ========================================================================== */
+        window.onload = function() {
+            // Draw Hero Artwork
+            drawArtworkCanvas('heroCanvas', ['#FF2E93', '#4A0E17', '#38BDF8', '#FDFBF7']);
+
+            // Render Products Catalog
+            renderProducts();
+
+            // Initialize Room Visualizer
+            initRoomVisualizer();
+
+            // Initialize Interactive Paint Canvas
+            initArtistPaintCanvas();
+
+            // Category Filter Buttons Event Setup
+            const filterBtns = document.querySelectorAll('#filterBtnGroup .filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-maroon', 'text-white');
+                        b.classList.add('bg-white', 'text-maroon');
+                    });
+                    btn.classList.remove('bg-white', 'text-maroon');
+                    btn.classList.add('bg-maroon', 'text-white');
+
+                    currentFilter = btn.getAttribute('data-filter');
+                    renderProducts();
+                });
+            });
+
+            // Cart Drawer Controls
+            document.getElementById('openCartBtn').addEventListener('click', openCartDrawer);
+            document.getElementById('closeCartBtn').addEventListener('click', closeCartDrawer);
+            document.getElementById('cartDrawerOverlay').addEventListener('click', (e) => {
+                if (e.target.id === 'cartDrawerOverlay') closeCartDrawer();
+            });
+
+            // Quick View Modal Controls
+            document.getElementById('closeQuickViewBtn').addEventListener('click', closeQuickViewModal);
+            document.getElementById('quickViewModal').addEventListener('click', (e) => {
+                if (e.target.id === 'quickViewModal') closeQuickViewModal();
+            });
+
+            // Mobile Navigation Toggle
+            const mobileMenu = document.getElementById('mobileMenu');
+            document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+            });
+            document.getElementById('closeMobileMenuBtn').addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // Search Bar Toggle
+            const searchBar = document.getElementById('searchBar');
+            const searchInput = document.getElementById('searchInput');
+            document.getElementById('searchToggleBtn').addEventListener('click', () => {
+                searchBar.classList.toggle('hidden');
+                if (!searchBar.classList.contains('hidden')) {
+                    searchInput.focus();
+                }
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                renderProducts();
+            });
+
+            document.getElementById('clearSearchBtn').addEventListener('click', () => {
+                searchInput.value = '';
+                searchQuery = '';
+                renderProducts();
+            });
+
+            // Newsletter Form
+            document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('newsletterEmail').value;
+                showToast(`Thank you for subscribing, ${email}!`);
+                e.target.reset();
+            });
+
+            // Checkout Button Action
+            document.getElementById('checkoutBtn').addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showToast('Your cart is empty!');
+                    return;
+                }
+                showToast('Redirecting to secure checkout...');
+            });
+        };
+    </script>
+</body>
+</html>
